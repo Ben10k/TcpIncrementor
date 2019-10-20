@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "TcpIncrementor": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
