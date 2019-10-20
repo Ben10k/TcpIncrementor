@@ -81,18 +81,18 @@ namespace TcpIncrementor.ClientHandler
             _logger.LogInformation("Timeout");
         }
 
-        private async Task StartIncrementAsync(Stream dataStream, int initial, int timeout, int increment,
+        private async Task StartIncrementAsync(Stream dataStream, int initial, int delay, int increment,
             CancellationToken token)
         {
             _logger.LogInformation(
-                "Starting incremental sending to client with parameters: initial {0}, timeout {1}, increment {2}",
-                initial, timeout, increment);
+                "Starting incremental sending to client with parameters: initial {0}, delay {1}, increment {2}",
+                initial, delay, increment);
             var currentNumber = initial;
             while (!token.IsCancellationRequested)
             {
                 await WriteTextAsync(dataStream, $"{currentNumber}", token);
                 currentNumber += increment;
-                await Task.Delay(timeout * 1000, token);
+                await Task.Delay(delay * 1000, token);
             }
         }
 
