@@ -2,6 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using TcpIncrementor.ClientHandler;
+using TcpIncrementor.Worker;
 
 namespace TcpIncrementor
 {
@@ -18,7 +20,7 @@ namespace TcpIncrementor
                 .UseSerilog((hostingContext, loggerConfiguration) =>
                     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration))
                 .ConfigureServices((hostContext, services) => services
-                    .AddHostedService<Worker>()
+                    .AddHostedService<TcpServiceWorker>()
                     .AddTransient<IClientHandler, IncrementingClientHandler>()
                 );
     }

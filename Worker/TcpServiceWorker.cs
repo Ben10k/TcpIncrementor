@@ -8,18 +8,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TcpIncrementor.ClientHandler;
 
-namespace TcpIncrementor
+namespace TcpIncrementor.Worker
 {
-    public class Worker : BackgroundService
+    public class TcpServiceWorker : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
+        private readonly ILogger<TcpServiceWorker> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly int _maxClientCount;
         private readonly TcpListener _tcpListener;
         private int _currentClientCount;
 
-        public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider, IConfiguration config)
+        public TcpServiceWorker(ILogger<TcpServiceWorker> logger, IServiceProvider serviceProvider, IConfiguration config)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
